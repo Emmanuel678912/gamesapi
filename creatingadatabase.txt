@@ -1,0 +1,35 @@
+1. head to pgAdmin
+2. click on Servers 
+3. create a brand new database
+4. save the database
+5. head to settings.py in project file
+6. head to databases section
+7. enter these details:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql', #this section connects to the database using psycopg2
+        'NAME': '[name of database]', # you need the name of the database
+        'USER': 'postgres', # the username you used when registering
+        'PASSWORD': '1234',
+        'HOST': 'localhost' # this is the machine that you're on
+    }
+}
+8. pip install psycopg2
+9. create a model (skip to 9 if the model is already created)
+10. head to terminal
+11. make sure that app name is in the INSTALLED APPS section of settings.py use '[appname.apps.[appname]Config]
+12. pip install Pillow 
+13. type python manage.py makemigrations
+14. ensure that 0001_initials.py is in the project
+15. type python manage.py sqlmigrate [appname] [migration number or version number i.e 0001]
+16. type python manage.py migrate
+17. head to pgAdmin
+18. refresh pgAdmin
+19. head to Tables to ensure database was moved successfully
+
+To add database to admin section:
+1. head to admin.py
+2. type from .models import [model name]
+3. type admin.site.register([model name])
+
+
