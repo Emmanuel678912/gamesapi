@@ -32,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY_GAMESAPI')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'emmanuelgamesapi.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', '.herokuapp.com']
 
 
 # Allows program to be run when DEBUG = False
