@@ -22,16 +22,22 @@ class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserRegistrationSerializer
     permission_classes = [permissions.AllowAny]
 
+    # allow user to register and if it fails then send them back to the login page
     def post(self, request, *args, **kwargs):
-        serializer = UserRegistrationSerializer(data=request.data)
-        if serializer.is_valid():
-            user = serializer.save()
-            token = Token.objects.get(user=user).key
-            data = {'token' : token}
+        try:
+            serializer = UserRegistrationSerializer(data=request.data)
+            if serializer.is_valid():
+                user = serializer.save()
+                token = Token.objects.get(user=user).key
+                data = {'token' : token}
+            else:
+                data = serializer.errors
+                return Response(data=data, status=201)
+        
+        except Exception:
+            return redirect('/login')
 
-        else:
-            data = serializer.errors
-        return Response(data=data, status=201)
+        
 
 class LoginView(generics.CreateAPIView):
     serializer_class = AuthTokenSerializer
