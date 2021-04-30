@@ -1,13 +1,16 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 from .models import Game
+#from rest_framework.serializers import Serializer, FileField
 
 
 # creates an API using JSON
 class GameSerializer(serializers.HyperlinkedModelSerializer):
+
     class Meta:
         model = Game
-        fields = ('id', 'url', 'name', 'genre', 'price')
+        fields = ('id', 'url', 'name', 'genre', 'price', 'files')
+        read_only_fields = ('id',)
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     # password
@@ -24,3 +27,10 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
+# class UploadSerializer(Serializer):
+
+#     file_uploaded = FileField(upload_to='files/')
+
+#     class Meta:
+#         fields = ['file_uploaded']

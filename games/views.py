@@ -9,6 +9,7 @@ from rest_framework.response import Response
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework.viewsets import ViewSet 
 
 
 # Create your views here.
@@ -16,6 +17,30 @@ class GameView(viewsets.ModelViewSet):
     # obtain Game data from database and display it on the page 
     queryset = Game.objects.all()
     serializer_class = GameSerializer
+
+class NewGameView(generics.CreateAPIView):
+    queryset = Game.objects.all()
+    serializer_class = GameSerializer
+
+    def create(self, request):
+        name = request.POST.get('name')
+        genre = request.POST.get('genre')
+        price = request.POST.get('price')
+        file = request.POST.get('files')
+
+
+        game, created = Game.objects.get_or_create(
+            name = name,
+            genre = genre,
+            price = price,
+            files = file,
+        )
+
+        game.save()
+    
+        return redirect('/')
+        
+
 
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -45,3 +70,15 @@ class LoginView(generics.CreateAPIView):
     # create an authentication token and use it as a view
     def create(self, request):
         return ObtainAuthToken().as_view()(request=request._request)
+
+# class UploadViewSet(ViewSet):
+#     serializer_class = UploadSerializer
+
+#     def list(self, request):
+#         return Response("GET API")
+
+#     def create(self, request):
+#         file_uploaded = request.FILES.get('file_uploaded')
+#         content_type = file_uploaded.content_type
+#         response = "POST API and you have uploaded a {} file".format(content_type)
+#         return Response(response)

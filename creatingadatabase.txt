@@ -15,7 +15,7 @@ DATABASES = {
     }
 }
 8. pip install psycopg2
-9. create a model (skip to 9 if the model is already created)
+9. create a model (skip to 10 if the model is already created)
 10. head to terminal
 11. make sure that app name is in the INSTALLED APPS section of settings.py use '[appname.apps.[appname]Config]
 12. pip install Pillow 
