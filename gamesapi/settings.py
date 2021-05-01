@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'Games',
         'USER': 'postgres',
-        'PASSWORD': '1234',
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
         'HOST': 'localhost',
 
     }
