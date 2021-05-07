@@ -9,7 +9,7 @@ class GameSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Game
-        fields = ('id', 'url', 'name', 'genre', 'price', 'files')
+        fields = ('id', 'url', 'name', 'genre', 'price')
         read_only_fields = ('id',)
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
