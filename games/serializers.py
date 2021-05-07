@@ -27,10 +27,3 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
-
-# class UploadSerializer(Serializer):
-
-#     file_uploaded = FileField(upload_to='files/')
-
-#     class Meta:
-#         fields = ['file_uploaded']

@@ -70,15 +70,3 @@ class LoginView(generics.CreateAPIView):
     # create an authentication token and use it as a view
     def create(self, request):
         return ObtainAuthToken().as_view()(request=request._request)
-
-# class UploadViewSet(ViewSet):
-#     serializer_class = UploadSerializer
-
-#     def list(self, request):
-#         return Response("GET API")
-
-#     def create(self, request):
-#         file_uploaded = request.FILES.get('file_uploaded')
-#         content_type = file_uploaded.content_type
-#         response = "POST API and you have uploaded a {} file".format(content_type)
-#         return Response(response)
