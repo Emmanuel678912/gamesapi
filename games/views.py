@@ -26,11 +26,13 @@ class NewGameView(generics.CreateAPIView):
         name = request.POST.get('name')
         genre = request.POST.get('genre')
         price = request.POST.get('price')
+        cover = request.POST.get('cover')
 
         game, created = Game.objects.get_or_create(
             name = name,
             genre = genre,
-            price = price
+            price = price,
+            cover = cover
         )
 
         game.save()
